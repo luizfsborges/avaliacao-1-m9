@@ -1,5 +1,3 @@
-# Using hiveMQ public broker and paho mqqt client, connect to the broker and subscribe to sensor data from the broker broker = "broker.hivemq.com" port = 1883 client = mqtt.Client("sensor_data_publisher") topic sensor_data
-
 import paho.mqtt.client as mqtt
 import time
 import json
@@ -85,14 +83,6 @@ def verify_temperature(sensor_data):
 
             return message
 
-
-'''
-on client.on_message, aplly some formatting to the json printing outsite json format return from the verify_temperature function on a fuction called "on_message" printing in lines:
-Supermercado n (com n = freezer_ids ou refrigerator_ids no indice 3)
-Freezer 1
-Temperatura: -16
-Status: Temperatura do freezer normal
-'''
 
 # Function to print the message
 def on_message(client, userdata, message):

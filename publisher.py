@@ -51,4 +51,32 @@ if modo_publisher == "T":
         # Publicar dados do refrigerador no topico "sensor_data" com qos 1
         client.publish("sensor_data", json.dumps(sensor_data_refrigerator), qos=1)
         time.sleep(1)
+
+elif modo_publisher == "P":
+    while True:
+        for i in range(len(freezer_ids)-1):
+            sensor_data_freezer = {
+                "id": freezer_ids[i],
+                "tipo": "freezer",
+                "temperature": random.randint(-30, -10),
+                "timestamp": get_timestamp()
+            }
+
+            # Publicar dados do freezer no topico "sensor_data" com qos 1
+            client.publish("sensor_data", json.dumps(sensor_data_freezer), qos=1)
+            time.sleep(1)
+
+        for i in range(len(refrigerator_ids)-1):
+            sensor_data_refrigerator = {
+                "id": refrigerator_ids[i],
+                "tipo": "refrigerator",
+                "temperature": random.randint(0, 15),
+                "timestamp": get_timestamp()
+            }
+
+            # Publicar dados do refrigerador no topico "sensor_data" com qos 1
+            client.publish("sensor_data", json.dumps(sensor_data_refrigerator), qos=1)
+            time.sleep(1)
+
+client.disconnect()
         
